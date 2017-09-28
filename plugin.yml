@@ -1,0 +1,12 @@
+name: ArenaPvP
+description: The ArenaPvP plugin
+author: Irish
+main: sys\arenapvp\ArenaPvP
+version: 1.2.0
+depend: Core
+api:
+  - 3.0.0
+  - 3.0.0-ALPHA5
+  - 3.0.0-ALPHA6
+  - 3.0.0-ALPHA7
+  - 3.0.0-ALPHA8

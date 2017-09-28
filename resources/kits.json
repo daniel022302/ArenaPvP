@@ -1,0 +1,834 @@
+{
+	"Archer": {
+		    "icon": 261,
+		    "helmet": [298],
+		    "chestplate": [299],
+		    "leggings": [300],
+		    "boots": [301],
+		    "items": [
+			    {
+				    "id": 261,
+				    "meta": 0,
+				    "count": 1,
+				    "enchantments": [[20, 2], [22, 1]]
+			    },
+			    {
+				    "id": 262,
+				    "meta": 0,
+				    "count": 1
+			    },
+			    {
+				    "id": 0,
+				    "meta": 0,
+				    "count": 6
+			    },
+			    {
+				    "id": 364,
+				    "meta": 0,
+				    "count": 64
+			    }
+		    ],
+		    "effects":[[1, 0, "infinite"], [23, 1, "infinite"]],
+			"mapType": 1
+	    },
+	"AxePvP": {
+		    "icon": 258,
+		    "helmet": [306],
+		    "chestplate": [307],
+		    "leggings": [308],
+		    "boots": [309],
+		    "items": [
+			    {
+				    "id": 258,
+				    "meta": 0,
+				    "count": 1,
+				    "enchantments": [[9, 1]]
+			    },
+			    {
+				    "id": 322,
+				    "meta": 0,
+				    "count": 16
+			    },
+			    {
+				    "id": 438,
+				    "meta": 22,
+				    "count": 7
+			    }
+		    ],
+		    "effects":[[1, 1, "infinite"], [23, 1, "infinite"]],
+			"mapType": 1
+		},
+	"BuffedSoup": {
+			"icon": 396,
+			"helmet": [302, [[0, 2], [17, 4]]],
+			"chestplate": [303, [[0, 2], [17, 4]]],
+			"leggings": [304, [[0, 2], [17, 4]]],
+			"boots": [305, [[0, 2], [17, 4]]],
+			"items": [
+				{
+					"id": 267,
+					"meta": 0,
+					"count": 1,
+					"enchantments": [[9, 1], [17, 3]]
+				},
+				{
+					"id": 459,
+					"meta": 0,
+					"count": 35
+				}
+			],
+			"effects":[[1, 2, "infinite"], [23, 1, "infinite"]],
+			"mapType": 1
+		},
+	"BuildUHC": {
+            "icon": [325, 10],
+            "helmet": [310, [[4, 2]]],
+            "chestplate": [311, [[0, 2]]],
+            "leggings": [312, [[0, 2]]],
+            "boots": [313, [[4, 2]]],
+            "items": [
+                {
+                    "id": 276,
+                    "meta": 0,
+                    "count": 1,
+                    "enchantments": [[9, 2]]
+                },
+                {
+                    "id": 346,
+                    "meta": 0,
+                    "count": 1
+                },
+                {
+                    "id": 261,
+                    "meta": 0,
+                    "count": 1,
+                    "enchantments": [[19, 3]]
+                },
+                {
+                    "id": 322,
+                    "meta": 0,
+                    "count": 6
+                },
+                {
+                    "id": 322,
+                    "meta": 1,
+                    "count": 3,
+					"customName": "§6Golden Head"
+				},
+                {
+                    "id": 4,
+                    "meta": 0,
+                    "count": 64
+                },
+                {
+                    "id": 5,
+                    "meta": 0,
+                    "count": 64
+                },
+                {
+                    "id": 325,
+                    "meta": 8,
+                    "count": 1
+                },
+                {
+                    "id": 325,
+                    "meta": 10,
+                    "count": 1
+                },
+                {
+                    "id": 325,
+                    "meta": 8,
+                    "count": 1
+                },
+                {
+                    "id": 325,
+                    "meta": 10,
+                    "count": 1
+                },
+                {
+                    "id": 278,
+                    "meta": 0,
+                    "count": 1
+                },
+                {
+                    "id": 279,
+                    "meta": 0,
+                    "count": 1
+                },
+                {
+                    "id": 262,
+                    "meta": 0,
+                    "count": 64
+                },
+                {
+                    "id": 364,
+	                "meta": 0,
+	                "count": 64
+                }
+            ]
+        },
+	"Combo": {
+			"icon": 462,
+			"helmet": [310, [[0, 4], [17, 10]]],
+			"chestplate": [311, [[0, 4], [17, 10]]],
+			"leggings": [312, [[0, 4], [17, 10]]],
+			"boots": [313, [[0, 4], [17, 10]]],
+			"items": [
+				{
+					"id": 276,
+					"meta": 0,
+					"count": 1,
+					"enchantments": [[9, 2], [13, 2], [17, 10]]
+				},
+				{
+					"id": 466,
+					"meta": 0,
+					"count": 64
+				},
+				{
+					"id": 373,
+					"meta": 32,
+					"count": 1
+				},
+				{
+					"id": 373,
+					"meta": 15,
+					"count": 1
+				},
+				{
+					"id": 373,
+					"meta": 32,
+					"count": 1
+				},
+				{
+					"id": 373,
+					"meta": 15,
+					"count": 1
+				},
+				{
+					"id": 0,
+					"meta": 0,
+					"count": 1
+				},
+				{
+					"id": 0,
+					"meta": 0,
+					"count": 1
+				},
+				{
+					"id": 0,
+					"meta": 0,
+					"count": 1
+				},
+				{
+					"id": 310,
+					"meta": 0,
+					"count": 1,
+					"enchantments": [[0, 4], [17, 10]]
+				},
+				{
+					"id": 311,
+					"meta": 0,
+					"count": 1,
+					"enchantments": [[0, 4], [17, 10]]
+				},
+				{
+					"id": 312,
+					"meta": 0,
+					"count": 1,
+					"enchantments": [[0, 4], [17, 10]]
+				},
+				{
+					"id": 313,
+					"meta": 0,
+					"count": 1,
+					"enchantments": [[0, 4], [17, 10]]
+				}
+			],
+			"effects": [[23, 1, "infinite"]],
+			"mapType": 1
+		},
+	"Diamond": {
+		    "icon": 310,
+		    "helmet": [310, [[4, 2]]],
+		    "chestplate": [311, [[4, 2]]],
+		    "leggings": [312, [[4, 2]]],
+		    "boots": [313, [[4, 2], [2, 4]]],
+		    "items": [
+			    {
+				    "id": 276,
+				    "meta": 0,
+				    "count": 1
+			    },
+			    {
+				    "id": 0,
+				    "meta": 0,
+				    "count": 1
+			    },
+			    {
+				    "id": 261,
+				    "meta": 0,
+				    "count": 1
+			    },
+			    {
+				    "id": 0,
+				    "meta": 0,
+				    "count": 1
+			    },
+			    {
+				    "id": 364,
+				    "meta": 0,
+				    "count": 64
+			    },
+			    {
+				    "id": 0,
+				    "meta": 0,
+				    "count": 3
+			    },
+			    {
+				    "id": 262,
+				    "meta": 0,
+				    "count": 32
+			    }
+		    ]
+	    },
+	"Gold": {
+			"icon": 314,
+			"helmet": [314, [[0, 3], [17, 2]]],
+			"chestplate": [315, [[0, 3], [17, 2]]],
+			"leggings": [316, [[0, 3], [17, 2]]],
+			"boots": [317, [[0, 3], [17, 2]]],
+			"items": [
+				{
+					"id": 272,
+					"meta": 0,
+					"count": 1,
+					"enchantments": [[9, 1], [17, 5]]
+				},
+				{
+					"id": 322,
+					"meta": 0,
+					"count": 4
+				},
+				{
+					"id": 261,
+					"meta": 0,
+					"count": 1
+				},
+				{
+					"id": 262,
+					"meta": 0,
+					"count": 64
+				},
+				{
+					"id": 364,
+					"meta": 0,
+					"count": 64
+				}
+			],
+			"effects":[[10, 0, "infinite"], [23, 1, "infinite"]],
+			"mapType": 0
+		},
+	"Iron": {
+		    "icon": 306,
+		    "helmet": [306],
+		    "chestplate": [307],
+		    "leggings": [308],
+		    "boots": [309, [[2, 4]]],
+		    "items": [
+			    {
+				    "id": 267,
+				    "meta": 0,
+				    "count": 1
+			    },
+			    {
+				    "id": 261,
+				    "meta": 0,
+				    "count": 1
+			    },
+			    {
+				    "id": 0,
+				    "meta": 0,
+				    "count": 1
+			    },
+			    {
+				    "id": 364,
+				    "meta": 0,
+				    "count": 64
+			    },
+			    {
+				    "id": 0,
+				    "meta": 0,
+				    "count": 4
+			    },
+			    {
+				    "id": 262,
+				    "meta": 0,
+				    "count": 32
+			    }
+		    ],
+			"mapType": 2
+	    },
+	"IronBuild": {
+			"icon": [325, 8],
+			"helmet": [306, [[0, 1]]],
+			"chestplate": [307, [[0, 1]]],
+			"leggings": [308, [[0, 1]]],
+			"boots": [309, [[0, 1]]],
+			"items": [
+				{
+					"id": 276,
+					"meta": 0,
+					"count": 1,
+					"enchantments": [[9, 1]]
+				},
+				{
+					"id": 346,
+					"meta": 0,
+					"count": 1
+				},
+				{
+					"id": 261,
+					"meta": 0,
+					"count": 1,
+					"enchantments": [[19, 2]]
+				},
+				{
+					"id": 322,
+					"meta": 0,
+					"count": 4
+				},
+				{
+					"id": 322,
+					"meta": 1,
+					"count": 2,
+					"customName": "§6Golden Head"
+				},
+				{
+					"id": 4,
+					"meta": 0,
+					"count": 32
+				},
+				{
+					"id": 5,
+					"meta": 0,
+					"count": 32
+				},
+				{
+					"id": 325,
+					"meta": 8,
+					"count": 1
+				},
+				{
+					"id": 325,
+					"meta": 10,
+					"count": 1
+				},
+				{
+					"id": 278,
+					"meta": 0,
+					"count": 1
+				},
+				{
+					"id": 279,
+					"meta": 0,
+					"count": 1
+				},
+				{
+					"id": 262,
+					"meta": 0,
+					"count": 32
+				},
+				{
+					"id": 364,
+					"meta": 0,
+					"count": 64
+				}
+			]
+		},
+	"IronSoup": {
+	        "icon": 282,
+	        "helmet": [306, [[0, 2]]],
+	        "chestplate": [307, [[0, 2]]],
+	        "leggings": [308, [[0, 2]]],
+            "boots": [309, [[0, 2]]],
+            "items": [
+                {
+                    "id": 276,
+                    "meta": 0,
+                    "count": 1,
+	                "enchantments": [[9, 1]]
+                },
+                {
+                    "id": 282,
+                    "meta": 0,
+                    "count": 35
+                }
+            ],
+	        "effects":[[1, 1, "infinite"], [23, 1, "infinite"]],
+			"mapType": 1
+		},
+	"NoDebuff": {
+		    "icon": 283,
+		    "helmet": [310, [[0, 1], [17, 3]]],
+		    "chestplate": [311, [[0, 1], [17, 3]]],
+		    "leggings": [312, [[0, 1], [17, 3]]],
+		    "boots": [313, [[0, 1], [17, 3], [2, 4]]],
+		    "items": [
+			    {
+				    "id": 276,
+				    "meta": 0,
+				    "count": 1,
+				    "enchantments": [[9, 1], [13, 2], [17, 3]]
+			    },
+			    {
+				    "id": 364,
+				    "meta": 0,
+				    "count": 64
+			    },
+			    {
+				    "id": 438,
+				    "meta": 22,
+				    "count": 5
+			    },
+			    {
+				    "id":373,
+				    "meta":13,
+				    "count":1
+			    },
+			    {
+				    "id":373,
+				    "meta":16,
+				    "count":1
+			    },
+			    {
+				    "id": 438,
+				    "meta": 22,
+				    "count": 8
+			    },
+			    {
+				    "id": 373,
+				    "meta": 16,
+				    "count": 1
+			    },
+			    {
+				    "id": 438,
+				    "meta": 22,
+				    "count": 8
+			    },
+			    {
+				    "id": 373,
+				    "meta": 16,
+				    "count": 1
+			    },
+			    {
+				    "id": 438,
+				    "meta": 22,
+				    "count": 8
+			    },
+			    {
+				    "id": 373,
+				    "meta": 16,
+				    "count": 1
+			    }
+		    ],
+			"mapType": 1
+	    },
+	"SG": {
+            "icon": 346,
+            "helmet": [314],
+            "chestplate": [307],
+            "leggings": [304],
+            "boots": [309],
+            "items": [
+                {
+                    "id": 272,
+                    "meta": 0,
+                    "count": 1
+                },
+                {
+                    "id": 346,
+                    "meta": 0,
+                    "count": 1
+                },
+	            {
+		            "id": 261,
+		            "meta": 0,
+		            "count": 1
+	            },
+	            {
+		            "id": 322,
+		            "meta": 0,
+		            "count": 1
+	            },
+	            {
+		            "id": 400,
+		            "meta": 0,
+		            "count": 2
+	            },
+	            {
+		            "id": 360,
+		            "meta": 0,
+		            "count": 1
+	            },
+	            {
+		            "id": 297,
+		            "meta": 0,
+		            "count": 1
+	            },
+	            {
+		            "id": 259,
+		            "meta": 0,
+		            "count": 1
+	            },
+	            {
+		            "id": 262,
+		            "meta": 0,
+		            "count": 8
+	            }
+            ],
+			"mapType": 2
+        },
+	"UHC": {
+		    "icon": 322,
+		    "helmet": [306, [[0, 2]]],
+		    "chestplate": [307, [[4, 2]]],
+		    "leggings": [308, [[0, 2]]],
+		    "boots": [309, [[4, 2]]],
+		    "items": [
+			    {
+				    "id": 267,
+				    "meta": 0,
+				    "count": 1,
+				    "enchantments": [[9, 1]]
+			    },
+			    {
+				    "id": 261,
+				    "meta": 0,
+				    "count": 1
+			    },
+			    {
+				    "id": 364,
+				    "meta": 0,
+				    "count": 16
+			    },
+			    {
+				    "id": 322,
+				    "meta": 0,
+				    "count": 1
+			    },
+			    {
+				    "id": 322,
+				    "meta": 0,
+				    "count": 1
+			    },
+			    {
+				    "id": 262,
+				    "meta": 0,
+				    "count": 64
+			    }
+		    ]
+	    },
+	"Vanilla": {
+		"icon": [
+			373,
+			22
+		],
+		"helmet": [
+			310,
+			[
+				[
+					0,
+					4
+				],
+				[
+					17,
+					3
+				]
+			]
+		],
+		"chestplate": [
+			311,
+			[
+				[
+					0,
+					4
+				],
+				[
+					17,
+					3
+				]
+			]
+		],
+		"leggings": [
+			312,
+			[
+				[
+					0,
+					4
+				],
+				[
+					17,
+					3
+				]
+			]
+		],
+		"boots": [
+			313,
+			[
+				[
+					0,
+					4
+				],
+				[
+					17,
+					3
+				],
+				[
+					2,
+					4
+				]
+			]
+		],
+		"items": [
+			{
+				"id": 276,
+				"meta": 0,
+				"count": 1,
+				"enchantments": [
+					[
+						9,
+						5
+					],
+					[
+						13,
+						2
+					],
+					[
+						17,
+						3
+					]
+				]
+			},
+			{
+				"id": 261,
+				"meta": 0,
+				"count": 1,
+				"enchantments": [
+					[
+						19,
+						5
+					],
+					[
+						21,
+						1
+					],
+					[
+						17,
+						3
+					],
+					[
+						22,
+						1
+					]
+				]
+			},
+			{
+				"id": 364,
+				"meta": 0,
+				"count": 64
+			},
+			{
+				"id": 438,
+				"meta": 22,
+				"count": 2
+			},
+			{
+				"id": 373,
+				"meta": 13,
+				"count": 1
+			},
+			{
+				"id": 373,
+				"meta": 29,
+				"count": 1
+			},
+			{
+				"id": 373,
+				"meta": 33,
+				"count": 1
+			},
+			{
+				"id": 373,
+				"meta": 16,
+				"count": 1
+			},
+			{
+				"id": 262,
+				"meta": 0,
+				"count": 64
+			},
+			{
+				"id": 438,
+				"meta": 22,
+				"count": 5
+			},
+			{
+				"id": 438,
+				"meta": 35,
+				"count": 1
+			},
+			{
+				"id": 438,
+				"meta": 18,
+				"count": 1
+			},
+			{
+				"id": 438,
+				"meta": 25,
+				"count": 1
+			},
+			{
+				"id": 438,
+				"meta": 22,
+				"count": 6
+			},
+			{
+				"id": 373,
+				"meta": 29,
+				"count": 1
+			},
+			{
+				"id": 373,
+				"meta": 33,
+				"count": 1
+			},
+			{
+				"id": 373,
+				"meta": 16,
+				"count": 1
+			},
+			{
+				"id": 438,
+				"meta": 22,
+				"count": 6
+			},
+			{
+				"id": 373,
+				"meta": 29,
+				"count": 1
+			},
+			{
+				"id": 373,
+				"meta": 33,
+				"count": 1
+			},
+			{
+				"id": 373,
+				"meta": 16,
+				"count": 1
+			}
+		],
+		"mapType": 1
+	}
+}

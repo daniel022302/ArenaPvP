@@ -1,0 +1,186 @@
+{
+	"duel": {
+		"versions": [
+			{
+				"overloads": {
+					"player": {
+						"input": {
+							"parameters": [
+								{
+									"name": "player",
+									"type": "string",
+									"optional": false
+								}
+							]
+						}
+					}
+				}
+			}
+		]
+	},
+	"elo": {
+		"versions": [
+			{
+				"overloads": {
+					"player": {
+						"input": {
+							"parameters": [
+								{
+									"name": "player",
+									"type": "string",
+									"optional": true
+								}
+							]
+						}
+					}
+				}
+			}
+		]
+	},
+	"party": {
+		"versions": [
+			{
+				"overloads": {
+					"accept": {
+						"input": {
+							"parameters": [
+								{
+									"name": "accept",
+									"type": "string"
+								},
+								{
+									"name": "player",
+									"type": "string",
+									"optional": false
+								}
+							]
+						}
+					},
+					"chat": {
+						"input": {
+							"parameters": [
+								{
+									"name": "chat",
+									"type": "string"
+								},
+								{
+									"name": "msg",
+									"type": "string"
+								}
+							]
+						}
+
+					},
+					"deny": {
+						"input": {
+							"parameters": [
+								{
+									"name": "deny",
+									"type": "string"
+								},
+								{
+									"name": "player",
+									"type": "string",
+									"optional": false
+								}
+							]
+						}
+
+					},
+					"disband": {
+						"input": {
+							"parameters": [
+								{
+									"name": "disband",
+									"type": "string"
+								}
+							]
+						}
+
+					},
+					"help": {
+						"input": {
+							"parameters": [
+								{
+									"name": "help",
+									"type": "string"
+								}
+							]
+						}
+
+					},
+					"invite": {
+						"input": {
+							"parameters": [
+								{
+									"name": "invite",
+									"type": "string"
+								},
+								{
+									"name": "player",
+									"type": "string",
+									"optional": false
+								}
+							]
+						}
+					},
+					"kick": {
+						"input": {
+							"parameters": [
+								{
+									"name": "kick",
+									"type": "string"
+								},
+								{
+									"name": "player",
+									"type": "string",
+									"optional": false
+								}
+							]
+						}
+					},
+					"leave": {
+						"input": {
+							"parameters": [
+								{
+									"name": "leave",
+									"type": "string"
+								}
+							]
+						}
+
+					},
+					"list": {
+						"input": {
+							"parameters": [
+								{
+									"name": "list",
+									"type": "string"
+								}
+							]
+						}
+					}
+				}
+			}
+		]
+	},
+	"spectate": {
+		"versions": [
+			{
+				"overloads": {
+					"player": {
+						"input": {
+							"parameters": [
+								{
+									"name": "player",
+									"type": "string",
+									"optional": false
+								}
+							]
+						}
+					}
+				}
+			}
+		]
+	}
+}
