@@ -20,19 +20,12 @@ use sys\irish\manager\CommandManager;
 
 class ArenaCommandManager extends CommandManager {
 
-    public function initCommands(ArenaPvP $plugin) {
-    	$plugin->saveResource("commands.json", true);
-    	$config = new Config($plugin->getDataFolder() . DIRECTORY_SEPARATOR . "commands.json");
-    	$this->addCommandData($config->getAll());
-        $plugin->getServer()->getCommandMap()->registerAll("arenapvp", [
-            new AddArenaCommand($plugin),
-            new DuelCommand($plugin),
-            new EditEloCommand($plugin),
-            new EloCommand($plugin),
-            new SpectateCommand($plugin),
-            new PartyCommand($plugin)
-        ]);
-    }
+	public function initCommands(ArenaPvP $plugin) {
+		$plugin->saveResource("commands.json", true);
+		$config = new Config($plugin->getDataFolder() . DIRECTORY_SEPARATOR . "commands.json");
+		$this->addCommandData($config->getAll());
+		$plugin->getServer()->getCommandMap()->registerAll("arenapvp", [new AddArenaCommand($plugin), new DuelCommand($plugin), new EditEloCommand($plugin), new EloCommand($plugin), new SpectateCommand($plugin), new PartyCommand($plugin)]);
+	}
 
 
 }

@@ -16,37 +16,37 @@ use sys\arenapvp\utils\ArenaChestInventory;
 
 abstract class Menu {
 
-    /** @var ArenaPvP */
-    private $plugin;
+	/** @var ArenaPvP */
+	private $plugin;
 
-    /** @var Item[] */
-    private $items;
+	/** @var Item[] */
+	private $items;
 
-    /**
-     * Menu constructor.
-     * @param ArenaPvP $plugin
-     * @param Item[] $items
-     */
-    public function __construct(ArenaPvP $plugin, array $items){
-        $this->plugin = $plugin;
-        $this->items = $items;
-    }
+	/**
+	 * Menu constructor.
+	 * @param ArenaPvP $plugin
+	 * @param Item[] $items
+	 */
+	public function __construct(ArenaPvP $plugin, array $items) {
+		$this->plugin = $plugin;
+		$this->items = $items;
+	}
 
-    /**
-     * @return ArenaPvP
-     */
-    public function getPlugin(): ArenaPvP {
-        return $this->plugin;
-    }
+	/**
+	 * @return ArenaPvP
+	 */
+	public function getPlugin(): ArenaPvP {
+		return $this->plugin;
+	}
 
-    /**
-     * @return Item[]
-     */
-    public function getItems(): array {
-        return $this->items;
-    }
+	/**
+	 * @return Item[]
+	 */
+	public function getItems(): array {
+		return $this->items;
+	}
 
-    public abstract function getInteraction(ArenaPlayer $player, ArenaChestInventory $inventory, Item $item);
+	public abstract function getInteraction(ArenaPlayer $player, ArenaChestInventory $inventory, Item $item);
 
 
 }
