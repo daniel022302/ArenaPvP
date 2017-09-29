@@ -23,7 +23,7 @@ class ArenaPvP extends PluginBase {
 	public static $MAINTENANCE_MODE = false;
 
     /** @var ArenaManager */
-    private $arenaManager;
+	private $arenaManager;
 
     /** @var ArenaCommandManager */
     private $commandManager;
@@ -43,64 +43,66 @@ class ArenaPvP extends PluginBase {
     /** @var PartyManager */
     private $partyManager;
 
-
-	public function onEnable() {
-	    $this->loadArenaManager();
-        $this->loadCommandManager();
+	public function onLoad() {
+		$this->loadArenaManager();
+		$this->loadCommandManager();
 		$this->loadInteractionManager();
 		$this->loadKitManager();
 		$this->loadMatchManager();
 		$this->loadPartyManager();
 		$this->loadQueueManager();
-        $this->loadListeners();
-        $this->getLogger()->info(TextFormat::GREEN.$this->getDescription()->getName()." has been enabled!");
+		$this->loadListeners();
     }
 
-    public function onDisable() {
-        $this->getArenaManager()->onDisable();
-        $this->getLogger()->info(TextFormat::RED.$this->getDescription()->getName()." has been disabled!");
-    }
+	public function onEnable() {
+		$this->getLogger()->info(TextFormat::GREEN.$this->getDescription()->getName()." has been enabled!");
+	}
 
-    private function loadArenaManager() {
-        $this->arenaManager = new ArenaManager($this);
-    }
+	public function onDisable() {
+		$this->getArenaManager()->onDisable();
+		$this->getLogger()->info(TextFormat::RED.$this->getDescription()->getName()." has been disabled!");
+	}
 
-    private function loadCommandManager() {
-        $this->commandManager = new ArenaCommandManager();
-        $this->getCommandManager()->initCommands($this); //TODO: Find a fix for this
-    }
+	private function loadArenaManager() {
+		$this->arenaManager = new ArenaManager($this);
+	}
 
-    private function loadQueueManager() {
-        $this->queueManager = new QueueManager($this);
-    }
+	private function loadCommandManager() {
+		$this->commandManager = new ArenaCommandManager();
+		$this->getCommandManager()->initCommands($this); //TODO: Find a fix for this
+	}
 
-    private function loadInteractionManager() {
-    	$this->interactionManager = new InteractionManager($this);
-    }
+	private function loadQueueManager() {
+		$this->queueManager = new QueueManager($this);
+	}
 
-    private function loadKitManager() {
-        $this->kitManager = new KitManager($this);
-    }
+	private function loadInteractionManager() {
+		$this->interactionManager = new InteractionManager($this);
+	}
 
-    private function loadListeners() {
-        new LobbyListener($this);
-        new MatchListener($this);
-    }
+	private function loadKitManager() {
+		$this->kitManager = new KitManager($this);
+	}
 
-    private function loadMatchManager() {
-        $this->matchManager = new MatchManager($this);
-    }
+	private function loadListeners() {
+		new LobbyListener($this);
+		new MatchListener($this);
+	}
 
-    private function loadPartyManager() {
-        $this->partyManager = new PartyManager($this);
-    }
+	private function loadMatchManager() {
+		$this->matchManager = new MatchManager($this);
+	}
+
+	private function loadPartyManager() {
+		$this->partyManager = new PartyManager($this);
+	}
 
 	/**
 	 * @return ArenaManager
 	 */
-    public function getArenaManager(): ArenaManager {
-        return $this->arenaManager;
-    }
+	public function getArenaManager(): ArenaManager {
+		return $this->arenaManager;
+	}
 
 	/**
 	 * @return ArenaCommandManager
@@ -112,16 +114,16 @@ class ArenaPvP extends PluginBase {
 	/**
 	 * @return QueueManager
 	 */
-    public function getQueueManager(): QueueManager {
-        return $this->queueManager;
-    }
+	public function getQueueManager(): QueueManager {
+		return $this->queueManager;
+	}
 
 	/**
 	 * @return KitManager
 	 */
-    public function getKitManager(): KitManager {
-        return $this->kitManager;
-    }
+	public function getKitManager(): KitManager {
+		return $this->kitManager;
+	}
 
 	/**
 	 * @return InteractionManager
@@ -133,15 +135,15 @@ class ArenaPvP extends PluginBase {
 	/**
 	 * @return MatchManager
 	 */
-    public function getMatchManager(): MatchManager {
-        return $this->matchManager;
-    }
+	public function getMatchManager(): MatchManager {
+		return $this->matchManager;
+	}
 
 	/**
 	 * @return PartyManager
 	 */
-    public function getPartyManager(): PartyManager {
-        return $this->partyManager;
-    }
+	public function getPartyManager(): PartyManager {
+		return $this->partyManager;
+	}
 
 }
