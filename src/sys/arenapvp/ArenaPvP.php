@@ -19,27 +19,27 @@ use sys\arenapvp\party\PartyManager;
 use sys\arenapvp\queue\QueueManager;
 
 class ArenaPvP extends PluginBase {
-    
-    /** @var ArenaManager */
+
+	/** @var ArenaManager */
 	private $arenaManager;
 
-    /** @var ArenaCommandManager */
-    private $commandManager;
+	/** @var ArenaCommandManager */
+	private $commandManager;
 
-    /** @var QueueManager */
-    private $queueManager;
+	/** @var QueueManager */
+	private $queueManager;
 
-    /** @var KitManager */
-    private $kitManager;
+	/** @var KitManager */
+	private $kitManager;
 
-    /** @var InteractionManager */
-    private $interactionManager;
+	/** @var InteractionManager */
+	private $interactionManager;
 
-    /** @var MatchManager */
-    private $matchManager;
+	/** @var MatchManager */
+	private $matchManager;
 
-    /** @var PartyManager */
-    private $partyManager;
+	/** @var PartyManager */
+	private $partyManager;
 
 	public function onLoad() {
 		$this->loadArenaManager();
@@ -50,7 +50,7 @@ class ArenaPvP extends PluginBase {
 		$this->loadPartyManager();
 		$this->loadQueueManager();
 		$this->loadListeners();
-    }
+	}
 
 	public function onEnable() {
 		$this->getLogger()->info(TextFormat::GREEN . $this->getDescription()->getName() . " has been enabled!");
