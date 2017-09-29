@@ -19,9 +19,7 @@ use sys\arenapvp\party\PartyManager;
 use sys\arenapvp\queue\QueueManager;
 
 class ArenaPvP extends PluginBase {
-
-	public static $MAINTENANCE_MODE = false;
-
+    
     /** @var ArenaManager */
 	private $arenaManager;
 
