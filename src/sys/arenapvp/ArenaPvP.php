@@ -55,12 +55,12 @@ class ArenaPvP extends PluginBase {
     }
 
 	public function onEnable() {
-		$this->getLogger()->info(TextFormat::GREEN.$this->getDescription()->getName()." has been enabled!");
+		$this->getLogger()->info(TextFormat::GREEN . $this->getDescription()->getName() . " has been enabled!");
 	}
 
 	public function onDisable() {
 		$this->getArenaManager()->onDisable();
-		$this->getLogger()->info(TextFormat::RED.$this->getDescription()->getName()." has been disabled!");
+		$this->getLogger()->info(TextFormat::RED . $this->getDescription()->getName() . " has been disabled!");
 	}
 
 	private function loadArenaManager() {
