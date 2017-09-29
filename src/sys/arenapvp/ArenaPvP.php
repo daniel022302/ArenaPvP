@@ -42,10 +42,9 @@ class ArenaPvP extends PluginBase {
 
     /** @var PartyManager */
     private $partyManager;
-
-
-	public function onEnable() {
-	    $this->loadArenaManager();
+	
+	public function onLoad() {
+		$this->loadArenaManager();
         $this->loadCommandManager();
 		$this->loadInteractionManager();
 		$this->loadKitManager();
@@ -53,6 +52,10 @@ class ArenaPvP extends PluginBase {
 		$this->loadPartyManager();
 		$this->loadQueueManager();
         $this->loadListeners();
+	}
+
+
+	public function onEnable() {
         $this->getLogger()->info(TextFormat::GREEN.$this->getDescription()->getName()." has been enabled!");
     }
 
