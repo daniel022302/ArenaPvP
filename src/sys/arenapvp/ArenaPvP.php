@@ -47,12 +47,12 @@ class ArenaPvP extends PluginBase {
 	public function onEnable() {
 	    $this->loadArenaManager();
         $this->loadCommandManager();
-        $this->loadKitManager();
-        $this->loadQueueManager();
-        $this->loadInteractionManager();
+		$this->loadInteractionManager();
+		$this->loadKitManager();
+		$this->loadMatchManager();
+		$this->loadPartyManager();
+		$this->loadQueueManager();
         $this->loadListeners();
-        $this->loadMatchManager();
-        $this->loadPartyManager();
         $this->getLogger()->info(TextFormat::GREEN.$this->getDescription()->getName()." has been enabled!");
     }
 
