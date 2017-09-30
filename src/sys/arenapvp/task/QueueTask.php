@@ -14,6 +14,7 @@ use sys\arenapvp\ArenaPvP;
 
 class QueueTask extends PluginTask {
 
+	/** @var ArenaPvP */
 	private $plugin;
 
 	/**

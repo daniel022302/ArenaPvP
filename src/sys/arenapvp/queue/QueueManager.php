@@ -9,10 +9,10 @@
 namespace sys\arenapvp\queue;
 
 
+use sys\arenapvp\ArenaPlayer;
 use sys\arenapvp\ArenaPvP;
 use sys\arenapvp\kit\Kit;
 use sys\arenapvp\task\QueueTask;
-use sys\irish\CorePlayer;
 
 class QueueManager {
 
@@ -60,7 +60,7 @@ class QueueManager {
 	public function getQueue(Kit $kit, bool $ranked = false, $win10 = false): Queue {
 		$search = $kit->getName();
 		if ($win10) {
-			$search .= CorePlayer::OS_WIN10;
+			$search .= ArenaPlayer::OS_WIN10;
 		}
 		if ($ranked) {
 			return $this->rankedQueue[$search];
@@ -71,9 +71,9 @@ class QueueManager {
 
 	public function createQueue(Kit $kit) {
 		$this->unrankedQueue[$kit->getName()] = new Queue($this->getPlugin(), $kit);
-		$this->unrankedQueue[$kit->getName() . CorePlayer::OS_WIN10] = new Queue($this->getPlugin(), $kit, false, CorePlayer::OS_WIN10);
+		$this->unrankedQueue[$kit->getName() . ArenaPlayer::OS_WIN10] = new Queue($this->getPlugin(), $kit, false, ArenaPlayer::OS_WIN10);
 		$this->rankedQueue[$kit->getName()] = new Queue($this->getPlugin(), $kit, true);
-		$this->rankedQueue[$kit->getName() . CorePlayer::OS_WIN10] = new Queue($this->getPlugin(), $kit, true, CorePlayer::OS_WIN10);
+		$this->rankedQueue[$kit->getName() . ArenaPlayer::OS_WIN10] = new Queue($this->getPlugin(), $kit, true, ArenaPlayer::OS_WIN10);
 	}
 
 	private function loadQueue() {

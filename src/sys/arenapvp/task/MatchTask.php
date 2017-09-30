@@ -12,12 +12,12 @@ namespace sys\arenapvp\task;
 use sys\arenapvp\arena\Arena;
 use sys\arenapvp\ArenaPlayer;
 use sys\arenapvp\ArenaPvP;
-use sys\arenapvp\basefiles\ParadoxTask;
+use sys\arenapvp\basefiles\ArenaTask;
 use sys\arenapvp\kit\Kit;
 use sys\arenapvp\match\Match;
 use sys\arenapvp\match\TeamMatch;
 
-class MatchTask extends ParadoxTask {
+class MatchTask extends ArenaTask {
 
 	/** @var ArenaPlayer[] */
 	private $players = [];

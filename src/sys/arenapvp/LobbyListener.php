@@ -17,7 +17,6 @@ use pocketmine\event\entity\EntityDamageEvent;
 use pocketmine\event\inventory\InventoryCloseEvent;
 use pocketmine\event\inventory\InventoryPickupItemEvent;
 use pocketmine\event\inventory\InventoryTransactionEvent;
-use pocketmine\event\player\PlayerBucketEmptyEvent;
 use pocketmine\event\player\PlayerCreationEvent;
 use pocketmine\event\player\PlayerDeathEvent;
 use pocketmine\event\player\PlayerDropItemEvent;
@@ -25,10 +24,12 @@ use pocketmine\event\player\PlayerExhaustEvent;
 use pocketmine\event\player\PlayerInteractEvent;
 use pocketmine\event\player\PlayerJoinEvent;
 use pocketmine\event\player\PlayerKickEvent;
-use pocketmine\event\player\PlayerPreLoginEvent;
 use pocketmine\event\player\PlayerQuitEvent;
 use pocketmine\event\player\PlayerRespawnEvent;
+use pocketmine\event\server\DataPacketReceiveEvent;
+use pocketmine\inventory\transaction\action\DropItemAction;
 use pocketmine\item\Item;
+use pocketmine\network\mcpe\protocol\LoginPacket;
 use pocketmine\tile\Tile;
 use pocketmine\utils\TextFormat;
 use sys\arenapvp\basefiles\BaseListener;
@@ -36,7 +37,6 @@ use sys\arenapvp\match\Match;
 use sys\arenapvp\menu\defaults\DuelAcceptMenu;
 use sys\arenapvp\utils\ArenaChest;
 use sys\arenapvp\utils\ArenaChestInventory;
-use sys\irish\utils\Permissions;
 
 class LobbyListener extends BaseListener {
 
@@ -47,10 +47,6 @@ class LobbyListener extends BaseListener {
 
 	private function init() {
 		Tile::registerTile(ArenaChest::class);
-		foreach ($this->getPlugin()->getServer()->getLevels() as $level) {
-			$level->setTime(5000);
-			$level->stopTime();
-		}
 	}
 
 	public function onQuit(PlayerQuitEvent $event) {
@@ -129,13 +125,25 @@ class LobbyListener extends BaseListener {
 		$player = $event->getPlayer();
 		$action = $event->getAction();
 		if ($action !== PlayerInteractEvent::LEFT_CLICK_AIR) {
-			if ($player instanceof ArenaPlayer and $player->isLoggedIn() and !$player->inMenu()) {
+			if ($player instanceof ArenaPlayer and !$player->inMenu()) {
 				$item = $event->getItem();
 				foreach ($this->getPlugin()->getInteractionManager()->getInteractions() as $interaction) {
 					if ($interaction->exists($item)) {
 						$event->setCancelled();
 						$interaction->onInteract($player, $item);
 					}
+				}
+			}
+		}
+	}
+
+	public function onPacketReceive(DataPacketReceiveEvent $event) {
+		$packet = $event->getPacket();
+		if ($packet instanceof LoginPacket) {
+			$player = $event->getPlayer();
+			if ($player instanceof ArenaPlayer) {
+				if (isset($packet->clientData["DeviceOS"])) {
+					$player->setClientOs($packet->clientData["DeviceOS"]);
 				}
 			}
 		}
@@ -155,7 +163,7 @@ class LobbyListener extends BaseListener {
 	public function onDamage(EntityDamageEvent $event) {
 		$player = $event->getEntity();
 		if ($player instanceof ArenaPlayer) {
-			if (!$player->inMatch() or $player->isSpectating()) {
+			if ($player->isSpectating()) {
 				$event->setCancelled();
 			}
 			if ($event instanceof EntityDamageByEntityEvent) {
@@ -170,22 +178,11 @@ class LobbyListener extends BaseListener {
 		}
 	}
 
-	public function onBucketEmpty(PlayerBucketEmptyEvent $event) {
-		$player = $event->getPlayer();
-		$item = $event->getItem();
-		if ($player instanceof ArenaPlayer) {
-			if (!$player->isOp() and !$player->inMatch()) {
-				$event->setCancelled();
-				$player->getInventory()->remove($item);
-			}
-		}
-	}
-
 	public function onJoin(PlayerJoinEvent $event) {
 		$player = $event->getPlayer();
 		if ($player instanceof ArenaPlayer) {
 			$player->loadElo();
-			$player->setNameTag(TextFormat::GRAY . $player->getPlayerName());
+			$player->setNameTag(TextFormat::GRAY . $player->getName());
 			$player->reset();
 			$this->getPlugin()->getArenaManager()->addLobbyItems($player);
 		}
@@ -196,30 +193,28 @@ class LobbyListener extends BaseListener {
 	}
 
 	public function onTransaction(InventoryTransactionEvent $event) {
-		/** @var ArenaPlayer $player */
-		$player = null;
-		/** @var ArenaChestInventory $chestInventory */
 		$chestInventory = null;
-		/** @var Item $item */
-		$item = null;
-		foreach ($event->getTransaction()->getTransactions() as $transaction) {
-			$inventory = $transaction->getInventory();
+		$transaction = null;
+
+		$player = $event->getTransaction()->getSource();
+
+		foreach ($event->getTransaction()->getInventories() as $inventory) {
 			if ($inventory instanceof ArenaChestInventory) {
-				foreach ($inventory->getViewers() as $viewer) {
-					if ($viewer instanceof ArenaPlayer) {
-						$player = $viewer;
-						$chestInventory = $inventory;
-						$item = $transaction->getSourceItem();
-						if ($item->getId() == Item::AIR) return;
-						break 2;
-					}
-				}
+				$chestInventory = $inventory;
+				break;
 			}
 		}
-		if ($player !== null and !$player->inMatch()) {
-			if ($chestInventory !== null and $item !== null and $player->inMenu()) {
-				$player->getMenu()->getInteraction($player, $chestInventory, $item);
+
+		foreach ($event->getTransaction()->getActions() as $action) {
+			if (!$action or $action instanceof DropItemAction) {
+				continue;
 			}
+			$transaction = $action;
+		}
+
+		$item = $transaction->getSourceItem();
+		if ($player instanceof ArenaPlayer and $chestInventory instanceof ArenaChestInventory and $item instanceof Item and $player->inMenu()) {
+			$player->getMenu()->getInteraction($player, $chestInventory, $item);
 			$event->setCancelled();
 		}
 
@@ -231,11 +226,6 @@ class LobbyListener extends BaseListener {
 			if ($player->isSpectating()) {
 				$event->setCancelled();
 			}
-			if (!$player->inMatch()) {
-				if (!$player->hasPermission(Permissions::PERMISSION_BYPASS)) {
-					$event->setCancelled();
-				}
-			}
 		}
 	}
 
@@ -243,25 +233,6 @@ class LobbyListener extends BaseListener {
 		$player = $event->getPlayer();
 		if ($player instanceof ArenaPlayer) {
 			if ($player->isSpectating()) {
-				$event->setCancelled();
-			}
-			if (!$player->inMatch()) {
-				if (!$player->hasPermission(Permissions::PERMISSION_BYPASS)) {
-					$event->setCancelled();
-				}
-			}
-		}
-	}
-
-	public function onPreLogin(PlayerPreLoginEvent $event) {
-		$player = $event->getPlayer();
-		if (ArenaPvP::$MAINTENANCE_MODE) {
-			$event->setKickMessage(TextFormat::RED . "The server is in maintenance at the moment, please try again later!");
-			$event->setCancelled();
-		}
-		foreach ($this->getPlugin()->getServer()->getOnlinePlayers() as $onlinePlayer) {
-			if ($player->getLowerCaseName() == $onlinePlayer->getLowerCaseName()) {
-				$event->setKickMessage(TextFormat::RED . "Someone is already logged onto the server with that name!");
 				$event->setCancelled();
 			}
 		}
@@ -287,8 +258,8 @@ class LobbyListener extends BaseListener {
 				$menu = $player->getMenu();
 				if ($menu instanceof DuelAcceptMenu and $player->hasDuelRequest()) { //accidental exit of menu
 					$player->setHasDuelRequest(false);
-					$player->sendArgsMessage(TextFormat::GREEN . "You have denied {0}'s duel request!", $menu->getOpponent()->getPlayerName());
-					$menu->getOpponent()->sendArgsMessage(TextFormat::RED . "{0} has denied your duel request!", $player->getPlayerName());
+					$player->sendArgsMessage(TextFormat::GREEN . "You have denied {0}'s duel request!", $menu->getOpponent()->getName());
+					$menu->getOpponent()->sendArgsMessage(TextFormat::RED . "{0} has denied your duel request!", $player->getName());
 					return;
 				}
 				$player->removeMenu();

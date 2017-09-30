@@ -60,7 +60,7 @@ class Elo {
 		$winnerEstimatedElo = $winnerEstimate / ($winnerEstimate + $loserEstimate);
 		$winnerKFactor = $winner->getKFactor($this->getKit());
 
-		$winnerAddition = (int) ($winnerKFactor * (1 - $winnerEstimatedElo));
+		$winnerAddition = intval($winnerKFactor * (1 - $winnerEstimatedElo));
 
 		$winner->sendArgsMessage(TextFormat::GREEN."You gained {0} ELO!", $winnerAddition);
 
@@ -73,7 +73,7 @@ class Elo {
 
 		$loserEstimatedElo = $loserEstimate / ($winnerEstimate + $loserEstimate);
 
-		$loserSubtraction = (int) ($loserKFactor * (0 - $loserEstimatedElo));
+		$loserSubtraction = intval($loserKFactor * (0 - $loserEstimatedElo));
 
 		$loser->sendArgsMessage(TextFormat::RED."You lost {0} ELO!", $loserSubtraction);
 

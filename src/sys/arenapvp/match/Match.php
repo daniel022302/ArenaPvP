@@ -10,8 +10,8 @@ namespace sys\arenapvp\match;
 
 
 use pocketmine\block\Block;
+use pocketmine\entity\Arrow;
 use pocketmine\entity\Effect;
-use pocketmine\entity\projectile\Arrow;
 use pocketmine\event\block\BlockBreakEvent;
 use pocketmine\event\block\BlockPlaceEvent;
 use pocketmine\event\entity\EntityDamageByChildEntityEvent;
@@ -33,8 +33,7 @@ use sys\arenapvp\ArenaPlayer;
 use sys\arenapvp\ArenaPvP;
 use sys\arenapvp\kit\Kit;
 use sys\arenapvp\task\DeathTask;
-use sys\irish\Main;
-use sys\irish\utils\BossBar;
+use sys\arenapvp\utils\BossBar;
 
 class Match {
 
@@ -97,7 +96,7 @@ class Match {
 		$this->plugin = $plugin;
 		$this->arena = $arena;
 		$this->id = md5(mt_rand());
-		$this->bossBar = new BossBar(Main::getInstance());
+		$this->bossBar = new BossBar($plugin);
 		$this->kit = $kit;
 		$this->players = $players;
 		$this->matchPlayers = $players;
@@ -124,8 +123,8 @@ class Match {
 	}
 
 	public function sendNameTags(ArenaPlayer $player) {
-		$player->setCustomNameTag(TextFormat::GREEN . $player->getPlayerName(), [$player]);
-		$player->setCustomNameTag(TextFormat::RED . $player->getPlayerName(), $this->getAllOtherPlayers($player));
+		$player->setCustomNameTag(TextFormat::GREEN . $player->getName(), [$player]);
+		$player->setCustomNameTag(TextFormat::RED . $player->getName(), $this->getAllOtherPlayers($player));
 	}
 
 	/**
@@ -353,7 +352,7 @@ class Match {
 	public function handleMessages() {
 		foreach ($this->getAll() as $player) {
 			$message = TextFormat::GRAY . "Ladder: " . TextFormat::GOLD . $this->getKit()->getName();
-			if (count($this->getMatchPlayers()) <= 2 and $this->isPlayer($player)) $message .= TextFormat::GRAY . " | Opponent: " . TextFormat::GOLD . ($this->getOtherPlayer($player))->getPlayerName();
+			if (count($this->getMatchPlayers()) <= 2 and $this->isPlayer($player)) $message .= TextFormat::GRAY . " | Opponent: " . TextFormat::GOLD . ($this->getOtherPlayer($player))->getName();
 			$player->sendPopup($message);
 		}
 	}
@@ -363,7 +362,7 @@ class Match {
 			$againstMessage = TextFormat::GOLD . "Now in match against: ";
 			foreach ($this->getAllOtherPlayers($player) as $otherPlayer) {
 				$addElo = ($this->isRanked() ? "[" . $otherPlayer->getElo($this->getKit())->getElo() . "]" : "");
-				$againstMessage .= $otherPlayer->getPlayerName() . $addElo . ", ";
+				$againstMessage .= $otherPlayer->getName() . $addElo . ", ";
 			}
 
 			$againstMessage = rtrim($againstMessage, ", ");
@@ -394,17 +393,17 @@ class Match {
 				if($event instanceof EntityDamageByEntityEvent) {
 					$damager = $event->getDamager();
 					if($damager instanceof ArenaPlayer) {
-						$this->broadcastMessage(TextFormat::RED.$entity->getPlayerName(). " killed by ".$damager->getPlayerName()." (".((int)$damager->getHealth() / 2)." hearts)");
+						$this->broadcastMessage(TextFormat::RED . $entity->getName() . " killed by " . $damager->getName() . " (" . ((int)$damager->getHealth() / 2) . " hearts)");
 					}
 				} else {
 					$lastCause = $entity->getLastDamageCause();
 					if($lastCause instanceof EntityDamageByEntityEvent) {
 						$damager = $lastCause->getDamager();
 						if($damager instanceof ArenaPlayer) {
-							$this->broadcastMessage(TextFormat::RED.$entity->getPlayerName(). " killed by ".$damager->getPlayerName()." (".((int)$damager->getHealth() / 2)." hearts)");
+							$this->broadcastMessage(TextFormat::RED . $entity->getName() . " killed by " . $damager->getName() . " (" . ((int)$damager->getHealth() / 2) . " hearts)");
 						}
 					} else {
-						$this->broadcastMessage(TextFormat::RED.$entity->getPlayerName(). " died");
+						$this->broadcastMessage(TextFormat::RED . $entity->getName() . " died");
 					}
 				}
 				$this->handleDeath($entity);
@@ -424,7 +423,7 @@ class Match {
 						$shooter = $child->getOwningEntity();
 						if($shooter instanceof ArenaPlayer) {
 							if($this->getKit()->isKit("BuildUHC") or $this->getKit()->isKit("Archer")) {
-								$shooter->sendMessage(TextFormat::GREEN.$entity->getPlayerName()." has ". (round(($entity->getHealth() - $event->getFinalDamage()) / 2)) ." hearts left!");
+								$shooter->sendMessage(TextFormat::GREEN . $entity->getName() . " has " . (round(($entity->getHealth() - $event->getFinalDamage()) / 2)) . " hearts left!");
 							}
 							$shooter->getLevel()->addSound(new AnvilFallSound($shooter->getPosition()), [$shooter]);
 						}
@@ -534,10 +533,10 @@ class Match {
 				if ($lastCause instanceof EntityDamageByEntityEvent) {
 					$damager = $lastCause->getDamager();
 					if($damager instanceof ArenaPlayer) {
-						$this->broadcastArgsMessage(TextFormat::RED . "{0} killed by {1} ({3} hearts)", $player->getPlayerName(), $damager->getPlayerName(), floor($damager->getHealth() / 2));
+						$this->broadcastArgsMessage(TextFormat::RED . "{0} killed by {1} ({3} hearts)", $player->getName(), $damager->getName(), floor($damager->getHealth() / 2));
 					}
 				} else {
-					$this->broadcastArgsMessage(TextFormat::RED . "{0} died", $player->getPlayerName());
+					$this->broadcastArgsMessage(TextFormat::RED . "{0} died", $player->getName());
 				}
 				$this->handleDeath($player, true);
 			}
@@ -647,7 +646,7 @@ class Match {
 					$this->setWinner($arenaPlayer);
 				}
 				foreach ($this->getAll() as $player) {
-					$player->sendArgsMessage(TextFormat::GREEN . "Winner: {0}", $this->getWinner()->getPlayerName());
+					$player->sendArgsMessage(TextFormat::GREEN . "Winner: {0}", $this->getWinner()->getName());
 				}
 			}
 			if (!$leaving) {
@@ -683,7 +682,7 @@ class Match {
 				if ($player->isSpectating()) {
 					$player->removeFromSpectating();
 				}
-				$player->setNameTag(TextFormat::GRAY . $player->getPlayerName());
+				$player->setNameTag(TextFormat::GRAY . $player->getName());
 				$player->removeMatch();
 				$player->setInMatch(false);
 				$player->reset();

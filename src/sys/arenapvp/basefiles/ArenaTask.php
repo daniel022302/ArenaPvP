@@ -13,7 +13,7 @@ namespace sys\arenapvp\basefiles;
 use pocketmine\scheduler\Task;
 use sys\arenapvp\ArenaPvP;
 
-abstract class ParadoxTask extends Task {
+abstract class ArenaTask extends Task {
 
 	/** @var ArenaPvP */
 	private $plugin;

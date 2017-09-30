@@ -12,9 +12,9 @@ namespace sys\arenapvp\task;
 
 use pocketmine\block\Block;
 use pocketmine\Player;
-use sys\arenapvp\basefiles\ParadoxTask;
+use sys\arenapvp\basefiles\ArenaTask;
 
-class BlockReplaceTask extends ParadoxTask {
+class BlockReplaceTask extends ArenaTask {
 
 	/** @var Block $block */
 	private $block;

@@ -10,10 +10,10 @@ namespace sys\arenapvp\task;
 
 
 use sys\arenapvp\ArenaPvP;
-use sys\arenapvp\basefiles\ParadoxTask;
+use sys\arenapvp\basefiles\ArenaTask;
 use sys\arenapvp\match\Match;
 
-class DeathTask extends ParadoxTask {
+class DeathTask extends ArenaTask {
 
 	/** @var Match */
 	private $match;

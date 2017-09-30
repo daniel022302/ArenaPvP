@@ -17,8 +17,10 @@ use pocketmine\nbt\tag\CompoundTag;
 use pocketmine\nbt\tag\IntTag;
 use pocketmine\nbt\tag\StringTag;
 use pocketmine\network\SourceInterface;
+use pocketmine\Player;
 use pocketmine\plugin\PluginException;
 use pocketmine\tile\Tile;
+use pocketmine\utils\Config;
 use pocketmine\utils\TextFormat;
 use sys\arenapvp\kit\Kit;
 use sys\arenapvp\match\Match;
@@ -26,15 +28,38 @@ use sys\arenapvp\menu\Menu;
 use sys\arenapvp\party\Party;
 use sys\arenapvp\queue\Queue;
 use sys\arenapvp\utils\ArenaChest;
-use sys\irish\CorePlayer;
 
-class ArenaPlayer extends CorePlayer {
+
+/*
+ * TODO: Rewrite some of the hacks I implemented in a couple of months back.
+ */
+
+class ArenaPlayer extends Player {
+
+	/**
+	 * Thanks to Steadfast 2 for providing these constants
+	 * https://github.com/Hydreon/Steadfast2
+	 */
+	const OS_ANDROID = 1;
+	const OS_IOS = 2;
+	const OS_OSX = 3;
+	const OS_FIREOS = 4;
+	const OS_GEARVR = 5;
+	const OS_HOLOLENS = 6;
+	const OS_WIN10 = 7;
+	const OS_WIN32 = 8;
+	const OS_DEDICATED = 9;
+	const OS_ORBIS = 10;
+	const OS_NX = 11;
 
 	/** @var bool */
 	private $duelRequestsEnabled = true;
 
 	/** @var bool */
 	private $partyInvitesEnabled = true;
+
+	/** @var int */
+	private $os = 0;
 
 	/** @var ArenaPvP */
 	private $main;
@@ -78,6 +103,9 @@ class ArenaPlayer extends CorePlayer {
 	/** @var Menu */
 	private $menu = null;
 
+	/** @var Config */
+	private $data = null;
+
 	/** @var Elo[] */
 	private $elo = [];
 
@@ -92,10 +120,42 @@ class ArenaPlayer extends CorePlayer {
 	}
 
 	/**
+	 * @param string $message
+	 * @param string[] ...$args
+	 */
+	public function sendArgsMessage(string $message, string ...$args) {
+		for ($i = 0; $i < count($args); $i++) {
+			$message = str_replace("{" . $i . "}", $args[$i], $message);
+		}
+		$this->sendMessage($message);
+	}
+
+	/**
 	 * @return ArenaPvP
 	 */
 	public function getMain(): ArenaPvP {
 		return $this->main;
+	}
+
+	/**
+	 * @return Config
+	 */
+	public function getData(): Config {
+		return $this->data;
+	}
+
+	/**
+	 * @return int
+	 */
+	public function getClientOs(): int {
+		return $this->os;
+	}
+
+	/**
+	 * @param int $os
+	 */
+	public function setClientOs(int $os) {
+		$this->os = $os;
 	}
 
 	/**

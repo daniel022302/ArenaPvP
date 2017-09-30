@@ -8,43 +8,9 @@
 
 namespace sys\arenapvp\utils;
 
-use pocketmine\level\Level;
-use pocketmine\level\Position;
-use pocketmine\math\Vector3;
-use pocketmine\Server;
 use pocketmine\utils\TextFormat;
 
 class Utils {
-
-	/**
-	 * Get a position instance from a string
-	 *
-	 * @param string $string
-	 *
-	 * @return Position|Vector3
-	 */
-	public static function parsePosition(string $string) {
-		$data = explode(",", str_replace(" ", "", $string));
-		$level = Server::getInstance()->getLevelByName($data[3]);
-		if ($level instanceof Level) {
-			return new Position($data[0], $data[1], $data[2], $level);
-		}
-
-		return self::parseVector($string);
-	}
-
-	/**
-	 * Get a vector instance from a string
-	 *
-	 * @param string $string
-	 *
-	 * @return Vector3
-	 */
-	public static function parseVector(string $string) {
-		$data = explode(",", str_replace(" ", "", $string));
-
-		return new Vector3($data[0], $data[1], $data[2]);
-	}
 
 	/**
 	 * Removes all coloring and color codes from a string
@@ -100,19 +66,19 @@ class Utils {
 	/**
 	 * Center a line of text based around the length of another line
 	 *
-	 * @param $toCentre
+	 * @param $toCenter
 	 * @param $checkAgainst
 	 *
 	 * @return string
 	 */
-	public static function centerText($toCentre, $checkAgainst) {
-		if (strlen($toCentre) >= strlen($checkAgainst)) {
-			return $toCentre;
+	public static function centerText($toCenter, $checkAgainst) {
+		if (strlen($toCenter) >= strlen($checkAgainst)) {
+			return $toCenter;
 		}
 
-		$times = floor((strlen($checkAgainst) - strlen($toCentre)) / 2);
+		$times = floor((strlen($checkAgainst) - strlen($toCenter)) / 2);
 
-		return str_repeat(" ", ($times > 0 ? $times : 0)) . $toCentre;
+		return str_repeat(" ", ($times > 0 ? $times : 0)) . $toCenter;
 	}
 
 	/**
