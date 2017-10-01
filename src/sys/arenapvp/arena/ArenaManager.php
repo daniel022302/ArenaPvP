@@ -189,10 +189,8 @@ class ArenaManager {
 	public function addLobbyItems(ArenaPlayer $player) {
 		$player->getInventory()->clearAll();
 		$items = $this->getLobbyItems();
-		$player->getInventory()->resetHotbar();
 		for($i = 0; $i < count($items); $i++){
-			$index = $player->getInventory()->getHotbarSlotIndex($i);
-			$player->getInventory()->setItem($index, $items[$i]);
+			$player->getInventory()->setItem($i, $items[$i]);
 		}
 	}
 

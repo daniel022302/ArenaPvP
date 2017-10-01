@@ -42,8 +42,8 @@ class DuelKitMenu extends Menu {
 			$menu = new DuelAcceptMenu($this->getPlugin(), $player, $kit);
 			$this->getOpponent()->addMenu($menu);
 			$this->getOpponent()->setHasDuelRequest();
-			$this->getOpponent()->sendMenu(TextFormat::GRAY . "Duel Request from " . TextFormat::GOLD . $this->getOpponent()->getPlayerName() . TextFormat::GRAY . "!");
-			$player->sendMessage(TextFormat::GREEN . "Successfully sent a duel request to " . $this->getOpponent()->getPlayerName() . "!");
+			$this->getOpponent()->sendMenu(TextFormat::GRAY . "Duel Request from " . TextFormat::GOLD . $this->getOpponent()->getName() . TextFormat::GRAY . "!");
+			$player->sendMessage(TextFormat::GREEN . "Successfully sent a duel request to " . $this->getOpponent()->getName() . "!");
 			$player->removeMenu();
 			$inventory->onClose($player);
 		}

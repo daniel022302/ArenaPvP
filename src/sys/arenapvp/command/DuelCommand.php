@@ -28,14 +28,12 @@ class DuelCommand extends BaseArenaUserCommand {
 	 */
 	public function onExecute(CommandSender $sender, array $args) {
 		if (count($args) > 0) {
-			$player = $this->getPlayer($args[0]);
+			$player = $sender->getServer()->getPlayer($args[0]);
 			if ($sender === $player) return TextFormat::RED . "You can't duel yourself!";
 
-			if (!$player) return TextFormat::RED . "That player is not online!";
+			if (!$player or !$player instanceof ArenaPlayer) return TextFormat::RED . "That player is not online!";
 
 			if (!$player->hasDuelRequestsEnabled()) return TextFormat::RED . "This player is not accepting duel requests at this time!";
-
-			if (!$player->isLoggedIn()) return TextFormat::RED . "That player is not logged in!";
 
 			if ($sender->inParty()) return TextFormat::RED . "You can't duel players while in a party!";
 

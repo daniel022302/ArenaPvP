@@ -58,7 +58,7 @@ class PartyManager {
 
 	public function getPartyFromPlayer(ArenaPlayer $player) {
 		foreach ($this->getParties() as $party) {
-			if ($party->getMember($player->getPlayerName()) !== null) {
+			if ($party->getMember($player->getName()) !== null) {
 				return $party;
 			}
 		}
@@ -97,7 +97,7 @@ class PartyManager {
 	public function acceptInvite(ArenaPlayer $player, string $playerName = "") {
 		if ($this->hasInvite($player, $playerName)) {
 			$invite = $this->getInvite($player, $playerName);
-			$invite->getFrom()->sendMessage(TextFormat::GREEN . $player->getPlayerName() . " has accepted the invite!");
+			$invite->getFrom()->sendMessage(TextFormat::GREEN . $player->getName() . " has accepted the invite!");
 			if ($invite->getFrom()->inParty()) {
 				$invite->getFrom()->getParty()->addPlayer($player);
 			} else {
@@ -114,7 +114,7 @@ class PartyManager {
 	public function denyInvite(ArenaPlayer $player, string $playerName = "") {
 		if ($this->hasInvite($player, $playerName)) {
 			$invite = $this->getInvite($player, $playerName);
-			$invite->getFrom()->sendMessage(TextFormat::RED . $player->getPlayerName() . " has denied your party invite!");
+			$invite->getFrom()->sendMessage(TextFormat::RED . $player->getName() . " has denied your party invite!");
 			$this->removeInvite($player, $playerName);
 			return TextFormat::GREEN . "You have successfully denied the invite!";
 		} else {
@@ -163,8 +163,8 @@ class PartyManager {
 		/** @var ArenaPlayer[] $players */
 		$players = $this->getPlugin()->getServer()->getOnlinePlayers();
 		foreach ($players as $player) {
-			if (stripos($player->getPlayerName(), $name) === 0) {
-				$curDelta = strlen($player->getPlayerName()) - strlen($name);
+			if (stripos($player->getName(), $name) === 0) {
+				$curDelta = strlen($player->getName()) - strlen($name);
 				if ($curDelta < $delta) {
 					$found = $player;
 					$delta = $curDelta;

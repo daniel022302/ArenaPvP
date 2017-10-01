@@ -64,11 +64,11 @@ class PartyCommand extends BaseArenaUserCommand {
 					if (isset($args[1])) {
 						if ($sender->inParty() and !($sender === $sender->getParty()->getLeader())) return TextFormat::RED . "You are not the party leader!";
 
-						$player = $this->getPlayer($args[1]);
+						$player = $this->getPlugin()->getServer()->getPlayer($args[1]);
 
 						if ($sender === $player) return TextFormat::RED . "You can't add yourself to a party!";
 
-						if (!$player) return TextFormat::RED . "That player is not online!";
+						if (!$player or !$player instanceof ArenaPlayer) return TextFormat::RED . "That player is not online!";
 
 						if ($sender->inParty() and $player->inParty() and $sender->getParty() === $player->getParty()) return TextFormat::RED . "That player is already in your party!";
 
@@ -80,9 +80,9 @@ class PartyCommand extends BaseArenaUserCommand {
 
 
 						$this->getPlugin()->getPartyManager()->addInvite($player, $sender);
-						$player->sendArgsMessage(TextFormat::GREEN . "You have received a party invite from {0}!", $sender->getPlayerName());
-						$player->sendArgsMessage(TextFormat::GREEN . "Use /party accept {0} or /party deny {0} to respond to the request!", $sender->getPlayerName());
-						return TextFormat::GREEN . "Successfully sent a party invite to " . $player->getPlayerName() . "!";
+						$player->sendArgsMessage(TextFormat::GREEN . "You have received a party invite from {0}!", $sender->getName());
+						$player->sendArgsMessage(TextFormat::GREEN . "Use /party accept {0} or /party deny {0} to respond to the request!", $sender->getName());
+						return TextFormat::GREEN . "Successfully sent a party invite to " . $player->getName() . "!";
 					} else {
 						$this->sendPartyHelp($sender);
 						return true;
@@ -101,8 +101,8 @@ class PartyCommand extends BaseArenaUserCommand {
 						if ($sender === $player) return TextFormat::RED . "You can't kick yourself from the party!";
 
 						$sender->getParty()->removePlayer($player);
-						$sender->getParty()->broadcastMessage(TextFormat::GREEN . $player->getPlayerName() . " has successfully been removed from the group!");
-						return TextFormat::GREEN . "You have successfully removed " . $player->getPlayerName() . " from the party!";
+						$sender->getParty()->broadcastMessage(TextFormat::GREEN . $player->getName() . " has successfully been removed from the group!");
+						return TextFormat::GREEN . "You have successfully removed " . $player->getName() . " from the party!";
 
 					} else {
 						$this->sendPartyHelp($sender);
@@ -119,9 +119,9 @@ class PartyCommand extends BaseArenaUserCommand {
 				case "list":
 					if (!$sender->inParty()) return TextFormat::RED . "You are not in a party!";
 
-					$sender->sendMessage(TextFormat::AQUA . "--- " . $sender->getParty()->getLeader()->getPlayerName() . "'s party ---");
+					$sender->sendMessage(TextFormat::AQUA . "--- " . $sender->getParty()->getLeader()->getName() . "'s party ---");
 					foreach ($sender->getParty()->getMembers() as $member) {
-						$sender->sendMessage(TextFormat::GOLD . " - " . TextFormat::AQUA . $member->getPlayerName());
+						$sender->sendMessage(TextFormat::GOLD . " - " . TextFormat::AQUA . $member->getName());
 					}
 					return TextFormat::AQUA . "------------------";
 					break;

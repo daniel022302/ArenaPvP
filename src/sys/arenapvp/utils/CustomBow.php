@@ -25,7 +25,6 @@ namespace sys\arenapvp\utils;
 
 
 use pocketmine\entity\Entity;
-use pocketmine\entity\projectile\Projectile;
 use pocketmine\event\entity\EntityShootBowEvent;
 use pocketmine\event\entity\ProjectileLaunchEvent;
 use pocketmine\item\enchantment\Enchantment;
@@ -103,7 +102,7 @@ class CustomBow extends Tool {
 				if(!$this->hasEnchantment(Enchantment::INFINITY)) {
 					$player->getInventory()->removeItem($arrow);
 				}
-				$this->applyDamage(1);
+				$this->meta++;
 			}
 			if($ev->getProjectile() instanceof Projectile){
 				$player->getServer()->getPluginManager()->callEvent($projectileEv = new ProjectileLaunchEvent($ev->getProjectile()));

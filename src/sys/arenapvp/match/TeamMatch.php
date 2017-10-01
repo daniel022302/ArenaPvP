@@ -94,10 +94,10 @@ class TeamMatch extends Match {
 			$opponentTeam = $this->getOtherTeam($team);
 			if ($opponentTeam instanceof Team) {
 				foreach ($team->getPlayers() as $player) {
-					$player->setCustomNameTag(TextFormat::GREEN . $player->getPlayerName(), $team->getPlayers());
+					$player->setCustomNameTag(TextFormat::GREEN . $player->getName(), $team->getPlayers());
 				}
 				foreach ($opponentTeam->getPlayers() as $player) {
-					$player->setCustomNameTag(TextFormat::RED . $player->getPlayerName(), $team->getPlayers());
+					$player->setCustomNameTag(TextFormat::RED . $player->getName(), $team->getPlayers());
 				}
 			}
 		}

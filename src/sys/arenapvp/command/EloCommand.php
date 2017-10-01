@@ -31,9 +31,9 @@ class EloCommand extends BaseArenaUserCommand {
 	}
 
 	public function sendElo(ArenaPlayer $sender, $player = null) {
-		$playerObject = $this->getPlayer($player);
+		$playerObject = $sender->getServer()->getPlayer($player);
 		if ($playerObject instanceof ArenaPlayer) {
-			$sender->sendArgsMessage(TextFormat::GRAY . "---- {0}'s Elo ----", $playerObject->getPlayerName());
+			$sender->sendArgsMessage(TextFormat::GRAY . "---- {0}'s Elo ----", $playerObject->getName());
 			foreach ($playerObject->getAllElo() as $elo) {
 				$sender->sendMessage(TextFormat::GRAY . $elo->getKit()->getName() . ": " . TextFormat::GOLD . $elo->getElo());
 			}

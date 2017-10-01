@@ -58,17 +58,17 @@ class DuelAcceptMenu extends Menu {
 				case "g":
 					$id = Item::STAINED_HARDENED_CLAY;
 					$meta = 13;
-					$name = TextFormat::GREEN . "Accept " . $this->getOpponent()->getPlayerName() . "'s request!";
+					$name = TextFormat::GREEN . "Accept " . $this->getOpponent()->getName() . "'s request!";
 					break;
 				case "h":
 					$id = Item::SKULL;
 					$meta = Skull::TYPE_HUMAN;
-					$name = TextFormat::GRAY . "Request From: " . TextFormat::GOLD . $this->getOpponent()->getPlayerName();
+					$name = TextFormat::GRAY . "Request From: " . TextFormat::GOLD . $this->getOpponent()->getName();
 					break;
 				case "r":
 					$id = Item::STAINED_HARDENED_CLAY;
 					$meta = 14;
-					$name = TextFormat::RED . "Deny " . $this->getOpponent()->getPlayerName() . "'s request!";
+					$name = TextFormat::RED . "Deny " . $this->getOpponent()->getName() . "'s request!";
 					break;
 			}
 			$i = Item::get($id, $meta);
@@ -121,12 +121,12 @@ class DuelAcceptMenu extends Menu {
 						$player->setInMatch();
 						$this->getOpponent()->setInMatch();
 						$this->getPlugin()->getMatchManager()->createMatch($players, $this->getKit());
-						$player->sendMessage(TextFormat::GREEN . "You have accepted " . $this->getOpponent()->getPlayerName() . "'s duel request!");
-						$this->getOpponent()->sendMessage(TextFormat::GREEN . $player->getPlayerName() . " has accepted your duel request!");
+						$player->sendMessage(TextFormat::GREEN . "You have accepted " . $this->getOpponent()->getName() . "'s duel request!");
+						$this->getOpponent()->sendMessage(TextFormat::GREEN . $player->getName() . " has accepted your duel request!");
 						break;
 					case 14:
-						$player->sendMessage(TextFormat::GREEN . "You have denied " . $this->getOpponent()->getPlayerName() . "'s duel request!");
-						$this->getOpponent()->sendMessage(TextFormat::RED . $player->getPlayerName() . " has denied your duel request!");
+						$player->sendMessage(TextFormat::GREEN . "You have denied " . $this->getOpponent()->getName() . "'s duel request!");
+						$this->getOpponent()->sendMessage(TextFormat::RED . $player->getName() . " has denied your duel request!");
 
 				}
 			} else {

@@ -28,11 +28,11 @@ class SpectateCommand extends BaseArenaUserCommand {
 	 */
 	public function onExecute(CommandSender $sender, array $args) {
 		if (count($args) > 0) {
-			$player = $this->getPlayer($args[0]);
+			$player = $sender->getServer()->getPlayer($args[0]);
 			if ($sender === $player) return TextFormat::RED . "You can't spectate yourself!";
 
 			//If the player is not online, it'll return null, and null equates to false, and the opposite of false is true :^)
-			if (!$player) return TextFormat::RED . "That player is not online!";
+			if (!$player or !$player instanceof ArenaPlayer) return TextFormat::RED . "That player is not online!";
 
 			if ($sender->inMatch()) return TextFormat::RED . "You can't spectate whilst in a match!";
 

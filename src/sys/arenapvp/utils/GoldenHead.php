@@ -14,8 +14,8 @@ use pocketmine\item\GoldenApple;
 
 class GoldenHead extends GoldenApple {
 
-	public function __construct($id = self::GOLDEN_APPLE) {
-		parent::__construct($id);
+	public function __construct($meta = 1) {
+		parent::__construct($meta);
 
 	}
 

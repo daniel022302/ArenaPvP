@@ -12,6 +12,7 @@ namespace sys\arenapvp\utils;
 
 use pocketmine\entity\Attribute;
 use pocketmine\entity\Squid;
+use pocketmine\math\Vector3;
 use pocketmine\network\mcpe\protocol\AddEntityPacket;
 use pocketmine\network\mcpe\protocol\BossEventPacket;
 use pocketmine\network\mcpe\protocol\MoveEntityPacket;
@@ -120,14 +121,10 @@ class BossBar {
 		$pk = new AddEntityPacket();
 		$pk->entityRuntimeId = self::ENTITY_ID;
 		$pk->type = Squid::NETWORK_ID;
-		$pk->x = $player->getX();
-		$pk->y = $player->getY() - self::$Y_SUBTRACTION;
-		$pk->z = $player->getZ();
-		$pk->speedX = 0;
-		$pk->speedY = 0;
-		$pk->speedZ = 0;
-		$pk->yaw = 0;
-		$pk->pitch = 0;
+		$pk->position = $player->getPosition()->subtract(0, self::$Y_SUBTRACTION);
+		$pk->motion = new Vector3(0, 0, 0);
+		$pk->yaw = 0.0;
+		$pk->pitch = 0.0;
 		$flags = 0;
 		$flags |= 1 << Squid::DATA_FLAG_INVISIBLE;
 		$flags |= 1 << Squid::DATA_FLAG_IMMOBILE;
@@ -140,9 +137,7 @@ class BossBar {
 	public function moveEntity(ArenaPlayer $player) {
 		$pk = new MoveEntityPacket();
 		$pk->entityRuntimeId = self::ENTITY_ID;
-		$pk->x = $player->getX();
-		$pk->y = $player->getY() - self::$Y_SUBTRACTION;
-		$pk->z = $player->getZ();
+		$pk->position = $player->getPosition()->subtract(0, self::$Y_SUBTRACTION);
 		$pk->pitch = 0;
 		$pk->headYaw = 0;
 		$pk->yaw = 0;

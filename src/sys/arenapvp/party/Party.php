@@ -59,7 +59,7 @@ class Party {
 			return $this->players[$name];
 		} else {
 			foreach ($this->getMembers() as $pName => $player) {
-				if (stripos($pName, $name) !== false or stripos($player->getPlayerName(), $name) !== false) {
+				if (stripos($pName, $name) !== false or stripos($player->getName(), $name) !== false) {
 					return $player;
 				}
 			}
@@ -88,7 +88,7 @@ class Party {
 			$this->players[$player->getName()] = $player;
 			$player->setParty($this);
 		}
-		$this->broadcastMessage(TextFormat::GREEN . $player->getPlayerName() . " has joined the party!");
+		$this->broadcastMessage(TextFormat::GREEN . $player->getName() . " has joined the party!");
 	}
 
 	public function removePlayer(ArenaPlayer $player) {
@@ -96,7 +96,7 @@ class Party {
 			unset($this->players[$player->getName()]);
 			$player->setParty(null);
 		}
-		$this->broadcastMessage(TextFormat::GREEN . $player->getPlayerName() . " has left the party!");
+		$this->broadcastMessage(TextFormat::GREEN . $player->getName() . " has left the party!");
 	}
 
 	public function removeLeader() {
@@ -111,7 +111,7 @@ class Party {
 	}
 
 	public function broadcastPartyMessage(ArenaPlayer $player, string $message) {
-		$this->broadcastMessage(TextFormat::BLUE . "(PARTY) " . TextFormat::GRAY . $player->getPlayerName() . " > " . $message);
+		$this->broadcastMessage(TextFormat::BLUE . "(PARTY) " . TextFormat::GRAY . $player->getName() . " > " . $message);
 	}
 
 	public function disbandParty() {

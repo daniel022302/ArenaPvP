@@ -9,7 +9,7 @@
 namespace sys\arenapvp;
 
 
-use pocketmine\entity\projectile\Arrow;
+use pocketmine\entity\Arrow;
 use pocketmine\event\block\BlockBreakEvent;
 use pocketmine\event\block\BlockPlaceEvent;
 use pocketmine\event\entity\EntityDamageEvent;

@@ -15,7 +15,6 @@ use sys\arenapvp\ArenaPlayer;
 use sys\arenapvp\ArenaPvP;
 use sys\arenapvp\menu\Menu;
 use sys\arenapvp\utils\ArenaChestInventory;
-use sys\irish\CorePlayer;
 
 class UnrankedQueueKitMenu extends Menu {
 
@@ -30,7 +29,7 @@ class UnrankedQueueKitMenu extends Menu {
 	public function getInteraction(ArenaPlayer $player, ArenaChestInventory $inventory, Item $item) {
 		$kit = $this->getPlugin()->getKitManager()->getKitByName(TextFormat::clean($item->getCustomName()));
 		if ($kit !== null) {
-			if ($player->getClientOs() == CorePlayer::OS_WIN10) {
+			if ($player->getClientOs() == ArenaPlayer::OS_WIN10) {
 				$queue = $this->getPlugin()->getQueueManager()->getQueue($kit, false, true);
 			} else {
 				$queue = $this->getPlugin()->getQueueManager()->getQueue($kit);

@@ -12,6 +12,7 @@ namespace sys\arenapvp\kit;
 use pocketmine\entity\Effect;
 use pocketmine\item\enchantment\Enchantment;
 use pocketmine\item\Item;
+use pocketmine\item\ItemFactory;
 use pocketmine\utils\Config;
 use pocketmine\utils\TextFormat;
 use sys\arenapvp\arena\ArenaManager;
@@ -34,8 +35,8 @@ class KitManager {
 		$this->plugin = $plugin;
 		$plugin->saveResource("kits.json", true);
 		$this->config = new Config($plugin->getDataFolder() . "kits.json", Config::JSON);
-		Item::registerItem(new CustomBow(Item::BOW, 0, 1, "Bow", 385));
-		Item::registerItem(new GoldenHead());
+		ItemFactory::registerItem(new CustomBow(Item::BOW, 0, 1));
+		ItemFactory::registerItem(new GoldenHead());
 		$this->loadKits();
 	}
 
