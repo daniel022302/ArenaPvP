@@ -33,7 +33,7 @@ class KitManager {
 
 	public function __construct(ArenaPvP $plugin) {
 		$this->plugin = $plugin;
-		$plugin->saveResource("kits.json", true);
+		$plugin->saveResource("kits.json", false);
 		$this->config = new Config($plugin->getDataFolder() . "kits.json", Config::JSON);
 		ItemFactory::registerItem(new CustomBow(Item::BOW, 0, 1));
 		ItemFactory::registerItem(new GoldenHead());

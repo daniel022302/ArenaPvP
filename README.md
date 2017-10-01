@@ -1,7 +1,7 @@
-# Paradox-ArenaPvP
-Paradox's ArenaPvP plugins.
+# ArenaPvP
 
-Only the api3/blocks branch of Pocketmine-MP(PMMP) is supported as of now, but more support and features will
-be added as time goes on.
+An open-source ArenaPvP plugin, inspired by [Badlion](https://www.badlion.net)
 
-Feel free to commit any changes you'd feel necessary, and have a good time!
+Supports the latest version of [PMMP](https://www.github.com/pmmp/Pocketmine-MP)
+
+Feel free to submit an issue if you find any bugs, want changes or enhancements, etc.
